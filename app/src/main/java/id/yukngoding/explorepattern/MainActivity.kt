@@ -1,36 +1,45 @@
 package id.yukngoding.explorepattern
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import kotlinx.android.synthetic.main.activity_main.*
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProviders
+import id.yukngoding.explorepattern.bindingAdapter.SecondActivity
+import id.yukngoding.explorepattern.databinding.ActivityMainBinding
+import id.yukngoding.explorepattern.rv.RecyclerViewActivity
 
-class MainActivity : AppCompatActivity(), MainContract.View, View.OnClickListener {
+class MainActivity : AppCompatActivity() {
 
-    var presenter = MainPresenter()
+    lateinit var viewModel: MainVm
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        presenter.setView(this, this)
+        val binding: ActivityMainBinding =
+            DataBindingUtil.setContentView(this, R.layout.activity_main)
+        viewModel = ViewModelProviders.of(this).get(MainVm::class.java)
 
-        tv_load.setOnClickListener(this)
+        binding.vm = viewModel
+        binding.activity = this
     }
 
-    override fun onClick(view: View?) {
-        when (view?.id) {
-            R.id.tv_load -> {
-                Log.e("YukNgoding", "check before from view:${presenter.resultData}")
-                presenter.loadData()
-            }
-        }
+    fun onClickRefreshData(view: View) {
+        Log.e("YukNgoding", "onClickRefreshData")
+        viewModel.refreshData()
     }
 
-    override fun resultData(messageError: String?) {
-        Log.e("YukNgoding", "messageError:${messageError.toString()}")
-        Log.e("YukNgoding", "check after from view:${presenter.resultData}")
+    fun onClickRv(view: View) {
+        Log.e("YukNgoding", "onClickRv")
+        startActivity(Intent(view.context, RecyclerViewActivity::class.java))
+    }
+
+    fun onClickBindingAdapter(view: View) {
+        Log.e("YukNgoding", "onClickBindingAdapter")
+        startActivity(Intent(view.context, SecondActivity::class.java))
     }
 
 }

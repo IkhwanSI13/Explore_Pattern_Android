@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="ItemBinding">
+
+        <variable
+            name="VM"
+            type="id.yukngoding.explorepattern.rv.AdapterVm" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:onClick="@{(v)->VM.onClick(v)}"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{VM.listItem.teks}"
+            android:textColor="#000"
+            tools:text="Text1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{VM.listItem.teks2}"
+            tools:text="Text1" />
+
+    </LinearLayout>
+</layout>
