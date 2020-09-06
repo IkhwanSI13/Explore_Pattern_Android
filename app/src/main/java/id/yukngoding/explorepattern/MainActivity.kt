@@ -7,9 +7,9 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
-import id.yukngoding.explorepattern.bindingAdapter.SecondActivity
+import id.yukngoding.explorepattern.useCase.bindingAdapter.SecondActivity
 import id.yukngoding.explorepattern.databinding.ActivityMainBinding
-import id.yukngoding.explorepattern.rv.RecyclerViewActivity
+import id.yukngoding.explorepattern.useCase.rv.RecyclerViewActivity
 
 class MainActivity : AppCompatActivity() {
 

@@ -1,9 +1,10 @@
-package id.yukngoding.explorepattern.bindingAdapter
+package id.yukngoding.explorepattern.useCase.bindingAdapter
 
 import androidx.databinding.ObservableInt
 import androidx.lifecycle.ViewModel
+import id.yukngoding.explorepattern.base.BaseViewModel
 
-class DataBindingVm : ViewModel() {
+class SecondVm : BaseViewModel() {
     var clickCount = ObservableInt(0)
 
     fun addClickCount() {

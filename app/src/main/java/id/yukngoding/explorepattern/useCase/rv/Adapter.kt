@@ -1,4 +1,4 @@
-package id.yukngoding.explorepattern.rv
+package id.yukngoding.explorepattern.useCase.rv
 
 import androidx.databinding.ObservableArrayList
 import android.view.LayoutInflater
@@ -32,8 +32,8 @@ class Adapter : RecyclerView.Adapter<Adapter.MyViewHolder>() {
     class MyViewHolder(private val itemBinding: ItemBinding)
         : RecyclerView.ViewHolder(itemBinding.root) {
 
-        fun bind(newsVm: AdapterVm) {
-            this.itemBinding.vm = newsVm
+        fun bind(hewanVm: AdapterVm) {
+            this.itemBinding.vm = hewanVm
         }
     }
 

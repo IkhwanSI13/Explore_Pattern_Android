@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -9,11 +8,11 @@
 
         <variable
             name="VM"
-            type="id.yukngoding.explorepattern.bindingAdapter.DataBindingVm" />
+            type="id.yukngoding.explorepattern.useCase.bindingAdapter.SecondVm" />
 
         <variable
             name="activity"
-            type="id.yukngoding.explorepattern.bindingAdapter.SecondActivity" />
+            type="id.yukngoding.explorepattern.useCase.bindingAdapter.SecondActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

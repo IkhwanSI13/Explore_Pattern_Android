@@ -1,4 +1,4 @@
-package id.yukngoding.explorepattern.bindingAdapter
+package id.yukngoding.explorepattern.useCase.bindingAdapter
 
 import android.view.View
 import android.widget.TextView
