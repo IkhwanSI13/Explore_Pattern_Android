@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-        android:text="Hello World!, this is project for explore pattern, and now you are at MVP+Dagger Branch"
+        android:text="Hello World!, this is project for explore pattern, and now you are at MVVM+rxjava+Dagger Branch"
         android:textAlignment="center"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"

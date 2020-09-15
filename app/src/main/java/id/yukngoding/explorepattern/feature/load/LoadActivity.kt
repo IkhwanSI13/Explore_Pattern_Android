@@ -1,16 +1,15 @@
 package id.yukngoding.explorepattern.feature.load
 
-import android.os.Bundle
 import android.view.View
-import android.widget.Toast
-import dagger.android.support.DaggerAppCompatActivity
+import androidx.lifecycle.Observer
 import id.yukngoding.explorepattern.R
+import id.yukngoding.explorepattern.base.BaseActivity
 import id.yukngoding.explorepattern.di.module.api.ApiInterface
 import id.yukngoding.explorepattern.di.module.db.MySharedPreferences
 import kotlinx.android.synthetic.main.activity_load.*
 import javax.inject.Inject
 
-class LoadActivity : DaggerAppCompatActivity(), LoadContract.View, View.OnClickListener {
+class LoadActivity : BaseActivity<LoadVm>(), View.OnClickListener {
 
     @Inject
     lateinit var pref: MySharedPreferences
@@ -18,43 +17,38 @@ class LoadActivity : DaggerAppCompatActivity(), LoadContract.View, View.OnClickL
     @Inject
     lateinit var api: ApiInterface
 
-    lateinit var presenter: LoadPresenter
+    var vm: LoadVm = LoadVm()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_load)
+    override fun getLayout(): Int = R.layout.activity_load
 
-        presenter = LoadPresenter(pref, api)
-        presenter.setView(this, this)
+    override fun initCreate() {
+        setUpVm()
 
         btn_internet.setOnClickListener(this)
         btn_local.setOnClickListener(this)
-
-        presenter.setSampleLocal()
     }
 
-    override fun resultData(messageError: String?, result: String?) {
-        messageError?.let {
-            Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
-        } ?: run {
-            tv_load.text = "Result: $result"
-        }
+    private fun setUpVm() {
+        vm.setUp(pref, api)
+        vm.setSampleLocal()
+
+        vm.observableDataLocal.observe(this, Observer {
+            tv_load.text = "Result $it"
+        })
+        vm.observableDataInternet.observe(this, Observer {
+            tv_load.text = "Result $it"
+        })
     }
 
     override fun onClick(view: View?) {
         when (view?.id) {
             R.id.btn_internet -> {
-                presenter.loadFromInternet()
+                vm.loadFromInternet()
             }
             R.id.btn_local -> {
-                presenter.loadFromLocal()
+                vm.loadFromLocal()
             }
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        presenter.dropView()
     }
 
 }
